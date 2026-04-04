@@ -13,8 +13,10 @@ if (!defined('_S_VERSION')) {
   define('_S_VERSION', '1.0.0');
 }
 
-get_template_directory() . '/inc/setup.php';
-get_template_directory() . '/inc/func.php';
+require_once get_template_directory()  . '/inc/setup.php';
+require_once get_template_directory()  . '/inc/func.php';
+require_once get_template_directory()  . '/inc/acf.php';
+require_once get_template_directory()  . '/api/menu-api.php';
 
 /**
  * Load WooCommerce compatibility file.

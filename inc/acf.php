@@ -42,21 +42,6 @@ if (function_exists('acf_add_options_page')) {
     'redirect'   => false
   ));
   acf_add_options_sub_page(array(
-    'page_title'  => 'Header',
-    'menu_title'  => 'Header',
-    'parent_slug' => 'theme-general-settings',
-  ));
-  acf_add_options_sub_page(array(
-    'page_title'  => 'About us',
-    'menu_title'  => 'About us',
-    'parent_slug' => 'theme-general-settings',
-  ));
-  acf_add_options_sub_page(array(
-    'page_title'  => 'Features',
-    'menu_title'  => 'Features',
-    'parent_slug' => 'theme-general-settings',
-  ));
-  acf_add_options_sub_page(array(
     'page_title'  => 'Product categories custom',
     'menu_title'  => 'Product categories custom',
     'parent_slug' => 'theme-general-settings',
@@ -64,6 +49,11 @@ if (function_exists('acf_add_options_page')) {
   acf_add_options_sub_page(array(
     'page_title'  => 'Footer',
     'menu_title'  => 'Footer',
+    'parent_slug' => 'theme-general-settings',
+  ));
+  acf_add_options_sub_page(array(
+    'page_title'  => 'Menu',
+    'menu_title'  => 'Menu',
     'parent_slug' => 'theme-general-settings',
   ));
   acf_add_options_sub_page(array(

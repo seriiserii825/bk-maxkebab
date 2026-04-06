@@ -55,13 +55,16 @@ function home_get_products_by_category($category_slug)
       $sale_price    = $product->get_sale_price();
       $is_on_sale    = $product->is_on_sale() && $sale_price;
 
+      $slug = $product->get_slug();
+      $permalink = 'produs' . '/' . $slug;
+
       $products[] = [
         'id'            => $product_id,
         'title'         => get_the_title(),
         'slug'          => $product->get_slug(),
-        'permalink'     => get_permalink(),
+        'permalink'     => $permalink,
         'image'         => get_the_post_thumbnail_url($product_id, 'post-thumbnail'),
-        'description'   => get_the_content(),
+        'description'   => parse_globus_content(get_the_content()),
         'sku'           => $product->get_sku(),
         'regular_price' => $regular_price,
         'sale_price'    => $is_on_sale ? $sale_price : null,

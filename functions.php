@@ -16,7 +16,7 @@ if (!defined('_S_VERSION')) {
 require_once get_template_directory()  . '/inc/setup.php';
 require_once get_template_directory()  . '/inc/func.php';
 require_once get_template_directory()  . '/inc/acf.php';
-require_once get_template_directory()  . '/api/menu-api.php';
+// require_once get_template_directory()  . '/api/menu-api.php';
 require_once get_template_directory()  . '/api/home-api.php';
 require_once get_template_directory()  . '/inc/restapi-secret.php';
 

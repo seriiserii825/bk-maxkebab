@@ -94,6 +94,14 @@ function home_get_category_data($term)
 
 function home_get_catalog()
 {
+  // $products_sections = get_field('products_sections');
+  // $products_section = $products_sections['products_section'];
+  // $title = $item['title'];
+  // $category = $item['category'];
+  // $icons = $item['icons'];
+  // $images = $item['images'];
+  // $background = $item['background'];
+
   $parent_categories = get_terms('product_cat', [
     'order'      => 'ASC',
     'hide_empty' => true,

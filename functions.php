@@ -26,3 +26,8 @@ require_once get_template_directory()  . '/inc/restapi-secret.php';
 if (class_exists('WooCommerce')) {
   require get_template_directory() . '/inc/woocommerce.php';
 }
+add_filter( 'acfwpcli_fieldgroup_paths', 'add_plugin_path' );
+function add_plugin_path( $paths ) {
+    $paths['my_plugin'] = get_template_directory() . '/acf/';
+    return $paths;
+  }

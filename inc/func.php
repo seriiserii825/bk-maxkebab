@@ -19,7 +19,7 @@ add_filter('wp_revisions_to_keep', 'my_revisions_to_keep');
 
 function remove_pages_editor()
 {
-  $ids = [50];
+  $ids = [50,44];
   if (in_array(get_the_ID(), $ids)) {
     remove_post_type_support('page', 'editor');
   } // end if

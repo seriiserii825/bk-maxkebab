@@ -94,25 +94,24 @@ function home_get_category_data($term)
 
 function home_get_catalog()
 {
-  // $products_sections = get_field('products_sections');
-  // $products_section = $products_sections['products_section'];
-  // $title = $item['title'];
-  // $category = $item['category'];
-  // $icons = $item['icons'];
-  // $images = $item['images'];
-  // $background = $item['background'];
-
-  $parent_categories = get_terms('product_cat', [
-    'order'      => 'ASC',
-    'hide_empty' => true,
-    'parent'     => 0,
-  ]);
+  $home_page_id      = 44;
+  $products_sections = get_field('products_sections', $home_page_id);
+  $products_section  = $products_sections['products_section'] ?? [];
 
   $catalog = [];
 
-  foreach ($parent_categories as $parent) {
+  foreach ($products_section as $item) {
+    $title      = $item['title'];
+    $category   = $item['category'];
+    $icons      = $item['icons'];
+    $images     = $item['images'];
+    $background = $item['background'];
+
+    $term = get_term_by('slug', $category, 'product_cat');
+    if (!$term) continue;
+
     $child_categories = get_terms('product_cat', [
-      'parent'     => $parent->term_id,
+      'parent'     => $term->term_id,
       'hide_empty' => false,
     ]);
 
@@ -124,15 +123,18 @@ function home_get_catalog()
         $children[] = home_get_category_data($child);
       }
     } else {
-      $children[] = home_get_category_data($parent);
+      $children[] = home_get_category_data($term);
     }
 
     $catalog[] = [
-      'id'           => $parent->term_id,
-      'name'         => $parent->name,
-      'slug'         => $parent->slug,
+      'id'           => $term->term_id,
+      'name'         => $title,
+      'slug'         => $term->slug,
       'has_children' => $has_children,
       'children'     => $children,
+      'icons'        => $icons,
+      'images'       => $images,
+      'background'   => $background,
     ];
   }
 

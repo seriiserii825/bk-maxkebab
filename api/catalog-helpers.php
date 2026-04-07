@@ -107,7 +107,7 @@ function home_get_catalog()
     $images     = $item['images'];
     $background = $item['background'];
 
-    $term = get_term_by('slug', $category, 'product_cat');
+    $term = is_a($category, 'WP_Term') ? $category : get_term_by('slug', $category, 'product_cat');
     if (!$term) continue;
 
     $child_categories = get_terms('product_cat', [

@@ -102,6 +102,7 @@ function home_get_catalog()
 
   foreach ($products_section as $item) {
     $title      = $item['title'];
+    $scroll_id = $item['scroll_id'];
     $category   = $item['category'];
     $icons      = $item['icons'];
     $images     = $item['images'];
@@ -129,6 +130,7 @@ function home_get_catalog()
     $catalog[] = [
       'id'           => $term->term_id,
       'name'         => $title,
+      'scroll_id'    => $scroll_id,
       'slug'         => $term->slug,
       'has_children' => $has_children,
       'children'     => $children,

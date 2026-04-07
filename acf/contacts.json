@@ -421,6 +421,7 @@
                 "max": 0,
                 "layout": "row",
                 "button_label": "Adaugă o linie nouă",
+                "rows_per_page": 20,
                 "sub_fields": [
                     {
                         "key": "field_5fbe1925ea228",
@@ -466,8 +467,7 @@
                         "placeholder": "",
                         "parent_repeater": "field_5fbe190dea227"
                     }
-                ],
-                "rows_per_page": 20
+                ]
             },
             {
                 "key": "field_5fbe1f2a493f6",

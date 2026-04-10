@@ -23,6 +23,7 @@ require_once get_template_directory()  . '/api/product-addons-api.php';
 require_once get_template_directory()  . '/api/related-products-by-category-api.php';
 require_once get_template_directory()  . '/api/offers-api.php';
 require_once get_template_directory()  . '/api/about-api.php';
+require_once get_template_directory()  . '/api/delivery-api.php';
 require_once get_template_directory()  . '/inc/restapi-secret.php';
 
 /**

@@ -1,6 +1,8 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
+require_once get_template_directory() . '/api/helpers/get_wp_products.php';
+
 function home_product_has_options($product_id)
 {
   if (function_exists('pewc_get_extra_fields')) {
@@ -78,20 +80,6 @@ function home_get_products_by_category($category_slug)
   return $products;
 }
 
-function home_get_category_data($term)
-{
-  $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-  $image_url    = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : null;
-
-  return [
-    'id'       => $term->term_id,
-    'name'     => $term->name,
-    'slug'     => $term->slug,
-    'image'    => $image_url,
-    'products' => home_get_products_by_category($term->slug),
-  ];
-}
-
 function home_get_catalog()
 {
   $home_page_id      = 44;
@@ -121,10 +109,10 @@ function home_get_catalog()
 
     if ($has_children) {
       foreach ($child_categories as $child) {
-        $children[] = home_get_category_data($child);
+        $children[] = get_wp_products($child);
       }
     } else {
-      $children[] = home_get_category_data($term);
+      $children[] = get_wp_products($term);
     }
 
     $catalog[] = [

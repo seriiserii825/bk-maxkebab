@@ -19,8 +19,8 @@ require_once get_template_directory()  . '/inc/acf.php';
 // require_once get_template_directory()  . '/api/menu-api.php';
 require_once get_template_directory()  . '/api/home-api.php';
 require_once get_template_directory()  . '/api/footer-api.php';
-require_once get_template_directory()  . '/api/single-product-api.php';
 require_once get_template_directory()  . '/api/product-addons-api.php';
+require_once get_template_directory()  . '/api/related-products-by-category-api.php';
 require_once get_template_directory()  . '/inc/restapi-secret.php';
 
 /**

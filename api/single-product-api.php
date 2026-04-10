@@ -5,7 +5,7 @@ require_once get_template_directory() . '/api/helpers/get_wp_products.php';
 
 function single_product_register()
 {
-  register_rest_route('global/v1', '/menu', [
+  register_rest_route('product/v1', '/single-product', [
     'methods'             => WP_REST_SERVER::READABLE,
     'permission_callback' => '__return_true',
     'callback' => 'get_single_product',

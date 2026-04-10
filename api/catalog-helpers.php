@@ -2,6 +2,7 @@
 if (!defined('ABSPATH')) exit;
 
 require_once get_template_directory() . '/api/helpers/get_wp_products.php';
+require_once get_template_directory() . '/api/helpers/get_products_by_query.php';
 
 function home_product_has_options($product_id)
 {
@@ -33,9 +34,11 @@ function home_product_has_options($product_id)
   return false;
 }
 
+
 function home_get_products_by_category($category_slug)
 {
-  $query = new WP_Query([
+
+  return get_products_by_query([
     'post_type'      => 'product',
     'posts_per_page' => -1,
     'tax_query'      => [[
@@ -44,40 +47,6 @@ function home_get_products_by_category($category_slug)
       'terms'    => $category_slug,
     ]],
   ]);
-
-  $products = [];
-
-  if ($query->have_posts()) {
-    while ($query->have_posts()) {
-      $query->the_post();
-      $product_id = get_the_ID();
-      $product    = wc_get_product($product_id);
-
-      $regular_price = $product->get_regular_price();
-      $sale_price    = $product->get_sale_price();
-      $is_on_sale    = $product->is_on_sale() && $sale_price;
-
-      $slug = $product->get_slug();
-      $permalink = 'produs' . '/' . $slug;
-
-      $products[] = [
-        'id'            => $product_id,
-        'title'         => get_the_title(),
-        'slug'          => $product->get_slug(),
-        'permalink'     => $permalink,
-        'image'         => get_the_post_thumbnail_url($product_id, 'post-thumbnail'),
-        'description'   => parse_globus_content(get_the_content()),
-        'sku'           => $product->get_sku(),
-        'regular_price' => $regular_price,
-        'sale_price'    => $is_on_sale ? $sale_price : null,
-        'is_on_sale'    => $is_on_sale,
-        'has_options'   => home_product_has_options($product_id),
-      ];
-    }
-    wp_reset_postdata();
-  }
-
-  return $products;
 }
 
 function home_get_catalog()

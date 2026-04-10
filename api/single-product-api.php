@@ -2,6 +2,7 @@
 if (!defined('ABSPATH')) exit;
 
 require_once get_template_directory() . '/api/helpers/get_wp_products.php';
+require_once get_template_directory() . '/api/helpers/get_products_by_query.php';
 
 function single_product_register()
 {
@@ -15,14 +16,26 @@ add_action('rest_api_init', 'single_product_register');
 
 function get_single_product($data)
 {
-  $product_cat_id = $data['product_cat_id'];
-  $term = get_term($product_cat_id, 'product_cat');
-  if (is_wp_error($term)) {
-    return new WP_Error('invalid_category', 'Invalid product category ID', ['status' => 400]);
-  }
+  $slug = $data->get_param('slug');
 
-  $related_products  = get_wp_products($term);
-  return [
-    'related_products' => $related_products,
-  ];
+  if (!isset($slug) || empty($slug)) {
+    return new WP_Error('invalid_slug', 'Invalid product slug', ['status' => 400]);
+  }
+  // $query = new WP_Query([
+  //   'post_type'      => 'product',
+  //   'posts_per_page' => 1,
+  //   'name'           => $slug,
+  // ]);
+  //
+  // return [
+  //   'slug'       => $slug,
+  //   'found'      => $query->found_posts,
+  //   'query_vars' => $query->query_vars,
+  // ];
+
+  return get_products_by_query([
+    'post_type'      => 'product',
+    'posts_per_page' => 1,
+    'name'           => $slug,
+  ]);
 }

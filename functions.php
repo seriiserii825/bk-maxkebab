@@ -21,6 +21,7 @@ require_once get_template_directory()  . '/api/home-api.php';
 require_once get_template_directory()  . '/api/footer-api.php';
 require_once get_template_directory()  . '/api/product-addons-api.php';
 require_once get_template_directory()  . '/api/related-products-by-category-api.php';
+require_once get_template_directory()  . '/api/random-products-api.php';
 require_once get_template_directory()  . '/api/offers-api.php';
 require_once get_template_directory()  . '/api/about-api.php';
 require_once get_template_directory()  . '/api/delivery-api.php';

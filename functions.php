@@ -27,6 +27,7 @@ require_once get_template_directory()  . '/api/about-api.php';
 require_once get_template_directory()  . '/api/delivery-api.php';
 require_once get_template_directory()  . '/api/contacts-api.php';
 require_once get_template_directory()  . '/inc/restapi-secret.php';
+require_once get_template_directory()  . '/inc/disable_all_emails_for_woocommerce.php';
 
 /**
  * Load WooCommerce compatibility file.

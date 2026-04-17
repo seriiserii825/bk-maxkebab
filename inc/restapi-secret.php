@@ -32,9 +32,19 @@ add_filter('rest_authentication_errors', function ($result) {
 }, 100);
 
 // Allow unauthenticated read access to WooCommerce products via the REST API.
+// Also allow order creation when a valid X-WP-Secret header is present.
 add_filter('woocommerce_rest_check_permissions', function ($permission, $context, $object_id, $post_type) {
   if ($post_type === 'product' && $context === 'read') {
     return true;
   }
+
+  if ($post_type === 'shop_order' && $context === 'create') {
+    $secret   = $_SERVER['HTTP_X_WP_SECRET'] ?? '';
+    $expected = defined('NUXT_API_SECRET') ? NUXT_API_SECRET : '';
+    if (!empty($expected) && hash_equals($expected, $secret)) {
+      return true;
+    }
+  }
+
   return $permission;
 }, 10, 4);

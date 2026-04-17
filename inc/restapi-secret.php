@@ -48,3 +48,14 @@ add_filter('woocommerce_rest_check_permissions', function ($permission, $context
 
   return $permission;
 }, 10, 4);
+
+// Render line-item meta keys prefixed with ## as bold section headers in the order admin.
+add_filter('woocommerce_order_item_get_formatted_meta_data', function ($formatted_meta) {
+  foreach ($formatted_meta as $meta) {
+    if (strpos($meta->key, '##') === 0) {
+      $meta->display_key   = '<span style="display:block;font-weight:700;color:#23282d;margin-top:8px;border-top:1px solid #eee;padding-top:6px;">' . esc_html($meta->value) . '</span>';
+      $meta->display_value = '';
+    }
+  }
+  return $formatted_meta;
+}, 10);
